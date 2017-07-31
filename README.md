@@ -16,3 +16,7 @@
 7. ./bin/console doctrine:migrations:diff // migrations based diff of what was added in the model
 8. ./bin/console doctrine:migrations:migrate // to apply the new migration
 9. ./bin/console doctrine:fixtures:load // to load the fixtures
+
+### User switch
+http://symfony-base.com//admin/item?_switch_user=asdalexey%2b5@yandex.ru
+http://symfony-base.com//admin/item?_switch_user=_exit
