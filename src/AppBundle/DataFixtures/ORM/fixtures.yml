@@ -1,0 +1,5 @@
+AppBundle\Entity\User:
+    user_{1..10}:
+        email: asdalexey<current()>@yandex.ru
+        plainPassword: 121314
+        roles: ['ROLE_ADMIN']
