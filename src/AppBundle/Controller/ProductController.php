@@ -9,7 +9,7 @@ class ProductController extends Controller {
     /**
      * @Route("/", name="product_list")
      */
-    public function homepageAction() {
+    public function productListAction() {
         return $this->render('product/list.html.twig');
     }
 }
