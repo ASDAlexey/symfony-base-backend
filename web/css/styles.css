@@ -5,15 +5,6 @@
 body {
     overflow-x: hidden;
     margin: 0;
-
-@media (max-width: 320px) {
-    min-width:
-
-320px
-
-;
-}
-
 }
 
 input[type="reset"] {
@@ -29,15 +20,10 @@ a {
     cursor: pointer;
     outline: none;
     transition: background .5s;
-
-&
-:active,
-
-&
-:focus {
-    outline: none;
 }
 
+a:focus, a:active {
+    outline: none;
 }
 
 p {
@@ -132,11 +118,11 @@ h3 {
 a[disabled],
 button[disabled] {
     opacity: .65 !important;
-
-small {
-    color: #ccc !important;
 }
 
+a[disabled],
+button[disabled] small {
+    color: #ccc !important;
 }
 
 .md-input-placeholder {
@@ -248,7 +234,7 @@ body {
 }
 
 .header {
-    padding: 10px 10px 10px 7px;
+    padding: 10px 10px 0 7px;
     margin: 0 auto 20px;
     background-color: #fff;
     border-bottom: 1px solid #81b9ba;
