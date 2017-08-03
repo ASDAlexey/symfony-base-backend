@@ -19,14 +19,9 @@
             </form>
         </div>
         <header class="header">
-            <img class="logo-icon" src="{{ asset('images/aquanote-logo.png') }}">
+            <img class="logo-icon" src="{{ asset('images/logo.jpg') }}">
             <h1 class="logo">Symfomy basics</h1>
             <ul class="navi">
-                <li class="search">
-                    <a href="#" class="js-header-search-toggle">
-                        <i class="fa fa-search"></i>
-                    </a>
-                </li>
                 {% if is_granted('ROLE_USER') %}
                     <li><a href="{{ path('security_logout') }}">Logout</a></li>
                 {% else %}
@@ -40,10 +35,6 @@
                 <div class="alert alert-success">{{ msg }}</div>
             {% endfor %}
             {% block body %}{% endblock %}
-        </div>
-
-        <div class="footer">
-            <p class="footer-text">Alexey Popov</p>
         </div>
 
         {% block javascripts %}
