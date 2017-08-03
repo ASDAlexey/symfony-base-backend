@@ -28,6 +28,7 @@ class UserController extends Controller {
                  * @var User $user
                  */
                 $user = $form->getData();
+                $user->setRoles(['ROLE_ADMIN']);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
