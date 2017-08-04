@@ -6,6 +6,7 @@ AppBundle\Entity\User:
 
 AppBundle\Entity\Product:
     genus.note_{1..100}:
+        name: <phoneName()>
         price: <numberBetween(1000, 50000)>
         description: <paragraph()>
         color: <color()>

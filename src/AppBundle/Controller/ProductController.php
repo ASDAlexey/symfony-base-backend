@@ -16,6 +16,9 @@ class ProductController extends Controller {
      * @Route("/", name="product_list")
      */
     public function productListAction() {
-        return $this->render('product/list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $products = $em->getRepository('AppBundle:Product')->findAll();
+        dump($products);
+        return $this->render('product/list.html.twig', ['products' => $products]);
     }
 }

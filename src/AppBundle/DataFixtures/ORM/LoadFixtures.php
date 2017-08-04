@@ -16,4 +16,10 @@ class LoadFixtures implements FixtureInterface {
         $key = array_rand($genera);
         return $genera[$key];
     }
+
+    public function phoneName() {
+        $genera = ['Gretel A7', 'Vertu Aster Lagoon Calf', 'IPhone 5', 'IPhone 6', 'IPhone 7', 'IPhone 8'];
+        $key = array_rand($genera);
+        return $genera[$key];
+    }
 }

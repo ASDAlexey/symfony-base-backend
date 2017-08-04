@@ -4,7 +4,26 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-               Product list
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Color</th>
+                            <th>Year</th>
+                        </tr>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.price }}</td>
+                                <td>{{ product.description }}</td>
+                                <td>{{ product.color }}</td>
+                                <td>{{ product.year }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>
         </div>
     </div>
