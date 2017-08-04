@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Product;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/")
@@ -33,5 +35,19 @@ class ProductController extends Controller {
 
 
         return $this->render('product/show.html.twig', ['product' => $product]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="product_delete")
+     * @Method("POST")
+     */
+    public function deleteGuestAction(Product $product) {
+        if (!$product) throw $this->createNotFoundException('No product found');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($product);
+        $em->flush();
+
+        return new Response('The product was deleted');
     }
 }

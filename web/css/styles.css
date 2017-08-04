@@ -304,3 +304,8 @@ h1 {
 .product-row:hover {
     background-color: rgba(192, 192, 192, .33);
 }
+
+.product-row .btn {
+    margin: 5px 0;
+    width: 120px;
+}

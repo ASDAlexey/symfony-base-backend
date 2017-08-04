@@ -5,26 +5,50 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table products-table">
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Description</th>
                             <th>Color</th>
                             <th>Year</th>
+                            <th>Actions</th>
                         </tr>
-                        {% for product in products %}
-                            <tr
-                                    class="product-row"
-                                    data-url="{{ path('product_show',{'id':product.id}) }}"
-                            >
-                                <td>{{ product.name }}</td>
-                                <td>{{ product.price }}</td>
-                                <td>{{ product.description }}</td>
-                                <td>{{ product.color }}</td>
-                                <td>{{ product.year }}</td>
+                        {% if(products|length) %}
+                            {% for product in products %}
+                                <tr class="product-row">
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.price }}</td>
+                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>{{ product.year }}</td>
+                                    <td>
+                                        <div>
+                                            <a
+                                                    class="btn btn-success"
+                                                    href="{{ path('product_show',{'id':product.id}) }}"
+                                            >
+                                                <i class="fa fa-edit"></i>
+                                                Edit
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <button
+                                                    class="btn btn-danger delete"
+                                                    data-url="{{ path('product_delete',{'id':product.id}) }}"
+                                            >
+                                                <i class="fa fa-remove"></i>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr class="product-row">
+                                <td colspan="6">Products no found</td>
                             </tr>
-                        {% endfor %}
+                        {% endif %}
                     </table>
                 </div>
             </div>
