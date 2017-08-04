@@ -295,3 +295,12 @@ h1 {
         min-width: 768px;
     }
 }
+
+.product-row {
+    transition: .3s background;
+    cursor: pointer;
+}
+
+.product-row:hover {
+    background-color: rgba(192, 192, 192, .33);
+}

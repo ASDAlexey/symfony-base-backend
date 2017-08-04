@@ -16,6 +16,7 @@ class Product {
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string"))
      */
@@ -38,6 +39,13 @@ class Product {
      * @ORM\Column(type="integer")
      */
     private $year;
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
+    }
 
     /**
      * @return mixed

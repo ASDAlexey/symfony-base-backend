@@ -14,7 +14,10 @@
                             <th>Year</th>
                         </tr>
                         {% for product in products %}
-                            <tr>
+                            <tr
+                                    class="product-row"
+                                    data-url="{{ path('product_list',{'id':product.id}) }}"
+                            >
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.price }}</td>
                                 <td>{{ product.description }}</td>

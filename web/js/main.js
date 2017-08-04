@@ -1,9 +1,5 @@
-+function ($) {
-
-    $(document).ready(function() {
-        $('.js-header-search-toggle').on('click', function() {
-            $('.search-bar').slideToggle();
-        });
-    });
-
-}(jQuery);
+$(document).ready(function () {
+  $('table.table tr').click(function () {
+    window.location.href = $(this).data('url');
+  });
+});
