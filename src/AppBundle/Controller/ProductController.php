@@ -21,4 +21,17 @@ class ProductController extends Controller {
         dump($products);
         return $this->render('product/list.html.twig', ['products' => $products]);
     }
+
+    /**
+     * @Route("/{id}", name="product_show")
+     */
+    public function showAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AppBundle:Product')->findOneBy(['id' => $id]);
+
+        if (!$product) throw $this->createNotFoundException('No product found');
+
+
+        return $this->render('product/show.html.twig', ['product' => $product]);
+    }
 }

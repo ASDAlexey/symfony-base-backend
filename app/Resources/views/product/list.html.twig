@@ -16,7 +16,7 @@
                         {% for product in products %}
                             <tr
                                     class="product-row"
-                                    data-url="{{ path('product_list',{'id':product.id}) }}"
+                                    data-url="{{ path('product_show',{'id':product.id}) }}"
                             >
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.price }}</td>
