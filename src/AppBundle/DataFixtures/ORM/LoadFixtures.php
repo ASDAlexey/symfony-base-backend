@@ -10,4 +10,10 @@ class LoadFixtures implements FixtureInterface {
     public function load(ObjectManager $manager) {
         Fixtures::load(__DIR__ . '/fixtures.yml', $manager, ['providers' => [$this]]);
     }
+
+    public function color() {
+        $genera = ['yellow', 'white', 'black', 'red', 'gray'];
+        $key = array_rand($genera);
+        return $genera[$key];
+    }
 }

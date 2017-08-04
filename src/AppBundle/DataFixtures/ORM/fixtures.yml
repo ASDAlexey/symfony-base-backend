@@ -3,3 +3,10 @@ AppBundle\Entity\User:
         email: asdalexey<current()>@yandex.ru
         plainPassword: 121314
         roles: ['ROLE_ADMIN']
+
+AppBundle\Entity\Product:
+    genus.note_{1..100}:
+        price: <numberBetween(1000, 50000)>
+        description: <paragraph()>
+        color: <color()>
+        year: <numberBetween(2010, 2017)>
