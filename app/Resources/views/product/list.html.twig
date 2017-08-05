@@ -7,6 +7,7 @@
                 <div class="table-responsive">
                     <table class="table products-table">
                         <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Description</th>
@@ -17,6 +18,14 @@
                         {% if(products|length) %}
                             {% for product in products %}
                                 <tr class="product-row">
+                                    <td>
+                                        <img
+                                                src="{{ asset('images/iphone7.jpg') }}"
+                                                alt="phone"
+                                                width="300"
+                                                height="200"
+                                        >
+                                    </td>
                                     <td>{{ product.name }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.description }}</td>
