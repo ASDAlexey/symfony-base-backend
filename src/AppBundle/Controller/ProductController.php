@@ -15,30 +15,32 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ProductController extends Controller {
     /**
-     * @Route("/", name="product_list")
+     * @Route("/", name="products_redirect")
+     */
+    public function redirectAction() {
+        return $this->redirectToRoute('product_list', array(), 301);
+    }
+
+    /**
+     * @Route("/products", name="product_list")
      */
     public function productListAction() {
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('AppBundle:Product')->findAll();
-        dump($products);
         return $this->render('product/list.html.twig', ['products' => $products]);
     }
 
     /**
-     * @Route("/{id}", name="product_show")
+     * @Route("/products/{id}", name="product_show")
      */
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('AppBundle:Product')->findOneBy(['id' => $id]);
-
-        if (!$product) throw $this->createNotFoundException('No product found');
-
-
         return $this->render('product/show.html.twig', ['product' => $product]);
     }
 
     /**
-     * @Route("/delete/{id}", name="product_delete")
+     * @Route("/products/{id}/delete", name="product_delete")
      * @Method("POST")
      */
     public function deleteGuestAction(Product $product) {

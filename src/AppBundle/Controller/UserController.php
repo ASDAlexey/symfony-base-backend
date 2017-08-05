@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller {
     /**
-     * @Route("/register", name="user_register")
+     * @Route("/signup", name="user_signup")
      */
     public function registerAction(Request $request) {
         $securityContext = $this->container->get('security.authorization_checker');

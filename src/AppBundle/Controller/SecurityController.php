@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class SecurityController extends Controller {
     /**
-     * @Route("/login", name="security_login")
+     * @Route("/signin", name="security_signin")
      */
     public function loginAction() {
         $securityContext = $this->container->get('security.authorization_checker');
