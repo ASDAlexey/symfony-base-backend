@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -42,6 +43,11 @@ class User implements UserInterface {
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="user")
+     */
+    private $products;
 
     public function getUsername() {
         return $this->email;
@@ -107,5 +113,12 @@ class User implements UserInterface {
      */
     public function getEmail() {
         return $this->email;
+    }
+
+    /**
+     * @return ArrayCollection|Product[]
+     */
+    public function getNotes() {
+        return $this->products;
     }
 }

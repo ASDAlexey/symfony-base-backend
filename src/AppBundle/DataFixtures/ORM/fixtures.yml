@@ -5,9 +5,10 @@ AppBundle\Entity\User:
         roles: ['ROLE_ADMIN']
 
 AppBundle\Entity\Product:
-    product_{1..12}:
+    product_{1..25}:
         name: <phoneName()>
         price: <numberBetween(1000, 50000)>
         description: <paragraph()>
         color: <color()>
         year: <numberBetween(2010, 2017)>
+        user: '@user_*'

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -39,6 +40,12 @@ class Product {
      * @ORM\Column(type="integer")
      */
     private $year;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * @return mixed
@@ -115,5 +122,19 @@ class Product {
      */
     public function setYear($year) {
         $this->year = $year;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser() {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user) {
+        $this->user = $user;
     }
 }
