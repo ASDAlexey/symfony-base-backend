@@ -300,3 +300,16 @@ h1 {
     margin: 5px 0;
     width: 120px;
 }
+
+.product__image {
+    text-align: center;
+}
+
+.product__image img {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.product_content {
+    font-size: 16px;
+}

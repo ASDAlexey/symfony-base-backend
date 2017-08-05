@@ -7,7 +7,23 @@
                 <a class="btn btn-action" href="/">back</a>
             </div>
             <div class="col-xs-12">
-                {{ dump(product) }}
+                <div class="product">
+                    <div class="col-xs-4 product__image">
+                        <img
+                                src="{{ asset('images/iphone7.jpg') }}"
+                                alt="phone"
+                                width="181"
+                                height="333"
+                        >
+                    </div>
+                    <div class="col-xs-8 product_content">
+                        <div><strong>Name:</strong> {{ product.name }}</div>
+                        <div><strong>Price:</strong> {{ product.price }}</div>
+                        <div><strong>Description:</strong> {{ product.description }}</div>
+                        <div><strong>Color:</strong> {{ product.color }}</div>
+                        <div><strong>Year:</strong> {{ product.year }}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
