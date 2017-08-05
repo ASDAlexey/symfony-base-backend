@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Page not found</h1>
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {# ... #}
+        {% endif %}
+
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href="{{ path('product_list') }}">return to the product list page</a>.
+        </p>
+    </body>
+</html>
