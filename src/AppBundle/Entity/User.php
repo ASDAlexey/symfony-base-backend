@@ -121,4 +121,25 @@ class User implements UserInterface {
     public function getNotes() {
         return $this->products;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts() {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products) {
+        $this->products = $products;
+    }
 }

@@ -9,9 +9,11 @@ class ProductRepository extends EntityRepository {
     /**
      * @return Product[]
      */
-    public function getPaginationQuery($em) {
-        $dql = "SELECT product FROM AppBundle:Product product";
-        $query = $em->createQuery($dql);
-        return $query;
+    public function getPaginationQuery($user) {
+        return $this->createQueryBuilder('product')
+            ->andWhere('product.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->execute();
     }
 }
