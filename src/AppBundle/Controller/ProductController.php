@@ -26,10 +26,23 @@ class ProductController extends Controller {
     /**
      * @Route("/products", name="product_list")
      */
-    public function productListAction() {
+    public function productListAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository('AppBundle:Product')->findAll();
-        return $this->render('product/list.html.twig', ['products' => $products]);
+//        $products = $em->getRepository('AppBundle:Product')->findAll();
+        $dql = "SELECT product FROM AppBundle:Product product";
+        $query = $em->createQuery($dql);
+
+        /**
+         * @var $paginator \Knp\Component\Pager\Paginator
+         */
+        $paginator = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('linit',5)
+        );
+
+        return $this->render('product/list.html.twig', ['products' => $result]);
     }
 
     /**

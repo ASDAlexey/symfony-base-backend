@@ -5,6 +5,7 @@
 2. [DoctrineMigrationsBundle](http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html)
 3. [DoctrineFixturesBundle](http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html)
 4. [Alice - Expressive fixtures generator](https://github.com/nelmio/alice)
+5. [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
 
 ### Base symfony commands
 1. ./bin/console doctrine:database:create // create DB
