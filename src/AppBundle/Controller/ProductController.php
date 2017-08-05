@@ -42,6 +42,30 @@ class ProductController extends Controller {
     }
 
     /**
+     * @Route("/product/new", name="product_new")
+     */
+    public function newAction(Request $request) {
+        $form = $this->createForm(ProductFormType::class);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $product = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Product created');
+
+            return $this->redirectToRoute('product_list');
+        }
+
+        return $this->render('product/edit.html.twig', ['productForm' => $form->createView()]);
+    }
+
+    /**
      * @Route("/product/{id}/edit", name="product_edit")
      */
     public function editAction(Request $request, Product $product) {
@@ -51,7 +75,7 @@ class ProductController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $genus = $form->getData();
+            $product = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);

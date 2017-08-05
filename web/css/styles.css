@@ -313,3 +313,11 @@ h1 {
 .product_content {
     font-size: 16px;
 }
+
+.new-product {
+    margin-bottom: 20px;
+}
+
+.main-content {
+    padding-bottom: 20px;
+}
