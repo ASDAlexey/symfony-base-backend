@@ -28,9 +28,7 @@ class ProductController extends Controller {
      */
     public function productListAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-//        $products = $em->getRepository('AppBundle:Product')->findAll();
-        $dql = "SELECT product FROM AppBundle:Product product";
-        $query = $em->createQuery($dql);
+        $query = $em->getRepository('AppBundle:Product')->getPaginationQuery($em);
 
         /**
          * @var $paginator \Knp\Component\Pager\Paginator
