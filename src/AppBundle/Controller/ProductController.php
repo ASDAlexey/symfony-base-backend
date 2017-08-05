@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use AppBundle\Form\ProductFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -37,6 +39,30 @@ class ProductController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('AppBundle:Product')->findOneBy(['id' => $id]);
         return $this->render('product/show.html.twig', ['product' => $product]);
+    }
+
+    /**
+     * @Route("/product/{id}/edit", name="product_edit")
+     */
+    public function editAction(Request $request, Product $product) {
+        $form = $this->createForm(ProductFormType::class, $product);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $genus = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Product updated');
+
+            return $this->redirectToRoute('product_list');
+        }
+
+        return $this->render('product/edit.html.twig', ['productForm' => $form->createView()]);
     }
 
     /**

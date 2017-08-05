@@ -14,15 +14,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="search-bar">
-            <form method="GET" action="" class="js-sea-search sea-search">
-                <input type="search" name="q" placeholder="Search Sea Creatures" autocomplete="off"
-                       class="search-input">
-            </form>
-        </div>
-
         <header class="header">
-            <img class="logo-icon" src="{{ asset('images/logo.jpg') }}">
+            <a href="{{ path('product_list') }}">
+                <img class="logo-icon" src="{{ asset('images/logo.jpg') }}">
+            </a>
             <h1 class="logo">Symfomy basics</h1>
             <ul class="navi">
                 {% if is_granted('ROLE_USER') %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <a class="btn btn-primary pull-right" href="{{ path('product_list') }}">back</a>
+            </div>
+            <div class="col-xs-12">
+                <h1>Edit Genus</h1>
+
+                {{ form_start(productForm) }}
+                {{ form_row(productForm.name) }}
+                {{ form_row(productForm.price) }}
+                {{ form_row(productForm.description) }}
+                {{ form_row(productForm.color) }}
+                {{ form_row(productForm.year) }}
+                <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                {{ form_end(productForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
