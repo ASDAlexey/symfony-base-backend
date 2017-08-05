@@ -35,7 +35,11 @@ class ProductController extends Controller {
          * @var $paginator \Knp\Component\Pager\Paginator
          */
         $paginator = $this->get('knp_paginator');
-        $result = $paginator->paginate($query, $request->query->getInt('page', 1), $request->query->getInt('linit', 5));
+        $result = $paginator
+            ->paginate(
+                $query,
+                $request->query->getInt('page', 1),
+                $request->query->getInt('linit', 5));
 
         return $this->render('product/list.html.twig', ['products' => $result]);
     }
