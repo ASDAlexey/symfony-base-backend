@@ -12,18 +12,18 @@
                 <div class="table-responsive">
                     <table class="table products-table">
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th class="text-center">Image</th>
+                            <th class="text-nowrap text-center">Name</th>
+                            <th class="text-center">Price</th>
                             <th>Description</th>
-                            <th>Color</th>
-                            <th>Year</th>
-                            <th>Actions</th>
+                            <th class="text-center">Color</th>
+                            <th class="text-center">Year</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                         {% if(products|length) %}
                             {% for product in products %}
                                 <tr class="product-row">
-                                    <td>
+                                    <td class="text-center">
                                         <img
                                                 src="{{ asset('images/iphone7.jpg') }}"
                                                 alt="phone"
@@ -31,12 +31,12 @@
                                                 height="333"
                                         >
                                     </td>
-                                    <td>{{ product.name }}</td>
-                                    <td>{{ product.price }}</td>
+                                    <td class="text-nowrap text-center">{{ product.name }}</td>
+                                    <td class="text-center">{{ product.price }}</td>
                                     <td>{{ product.description }}</td>
-                                    <td>{{ product.color }}</td>
-                                    <td>{{ product.year }}</td>
-                                    <td>
+                                    <td class="text-center">{{ product.color }}</td>
+                                    <td class="text-center">{{ product.year }}</td>
+                                    <td class="text-center">
                                         <div>
                                             <a
                                                     class="btn btn-success"

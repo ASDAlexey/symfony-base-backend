@@ -321,3 +321,7 @@ h1 {
 .main-content {
     padding-bottom: 20px;
 }
+
+.products-table {
+    font-size: 16px;
+}
