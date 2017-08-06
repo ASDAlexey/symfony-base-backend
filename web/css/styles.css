@@ -335,7 +335,11 @@ h1 {
     margin-top: 10px;
 }
 
-.image + .wrap-file {
+.image + .wrap-file .control-label {
+    opacity: 0;
+}
+
+.image + .wrap-file input[type="file"] {
     opacity: 0;
 }
 

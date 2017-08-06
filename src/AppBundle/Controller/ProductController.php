@@ -63,13 +63,15 @@ class ProductController extends Controller {
 
             // $file stores the uploaded file
             $file = $product->getImage();
+            if ($file) {
 
-            // Generate a unique name for the file before saving it
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                // Generate a unique name for the file before saving it
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            // Move the file to the directory where user avatars are stored
-            $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
+                // Move the file to the directory where user avatars are stored
+                $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
+            } else $fileName = null;
 
             // Update the 'avatar' property to store file name
             // instead of its contents
@@ -86,7 +88,7 @@ class ProductController extends Controller {
             return $this->redirectToRoute('product_list');
         }
 
-        return $this->render('product/edit.html.twig', ['productForm' => $form->createView()]);
+        return $this->render('product/edit.html.twig', ['productForm' => $form->createView(), 'imageName' => null]);
     }
 
     /**

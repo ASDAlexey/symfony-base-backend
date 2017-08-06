@@ -18,15 +18,23 @@ $(document).ready(function () {
 
   // file
   function readFile() {
+    const MIME_TYPES = ['image/jpeg', 'image/png'];
     if (this.files && this.files[0]) {
       const FR = new FileReader();
 
       FR.addEventListener("load", function (e) {
-        document.querySelector('.wrapper-image-block img').src = e.target.result;
+        const file = e.target.result;
+        if (file.match(MIME_TYPES[0]) || file.match(MIME_TYPES[1])) {
+          $('.wrap-file .form-group').removeClass('has-error');
+          $('.wrap-file .help-block').remove();
+          document.querySelector('.wrapper-image-block img').src = file;
+        }
       });
       FR.readAsDataURL(this.files[0]);
     }
   }
 
-  document.querySelector('.wrap-file input').addEventListener("change", readFile);
+  if ($('.wrap-file input').length) {
+    document.querySelector('.wrap-file input').addEventListener("change", readFile);
+  }
 });
