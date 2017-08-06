@@ -11,3 +11,7 @@ services:
       autowire: true
       tags:
           - { name: doctrine.event_subscriber }
+
+  app.image:
+      class: AppBundle\Service\ImageService
+      arguments: [%product_image%]

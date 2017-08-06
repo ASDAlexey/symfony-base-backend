@@ -63,15 +63,8 @@ class ProductController extends Controller {
 
             // $file stores the uploaded file
             $file = $product->getImage();
-            if ($file) {
 
-                // Generate a unique name for the file before saving it
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
-                // Move the file to the directory where user avatars are stored
-                $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
-            } else $fileName = null;
+            $fileName = $this->get('app.image')->move($file);
 
             // Update the 'avatar' property to store file name
             // instead of its contents
@@ -113,15 +106,9 @@ class ProductController extends Controller {
             $file = $formProduct->getImage();
 
             if ($file) {
-                // Generate a unique name for the file before saving it
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $fileName = $this->get('app.image')->move($file);
 
-                // Move the file to the directory where user avatars are stored
-                $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
-
-                // Update the 'avatar' property to store file name
-                // instead of its contents
+                // Update the 'image' property to store file name
                 $formProduct->setImage($fileName);
             }
 
