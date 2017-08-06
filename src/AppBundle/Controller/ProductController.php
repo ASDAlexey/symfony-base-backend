@@ -35,13 +35,9 @@ class ProductController extends Controller {
          * @var $paginator \Knp\Component\Pager\Paginator
          */
         $paginator = $this->get('knp_paginator');
-        $result = $paginator
-            ->paginate(
-                $query,
-                $request->query->getInt('page', 1),
-                $request->query->getInt('linit', 5));
+        $result = $paginator->paginate($query, $request->query->getInt('page', 1), $request->query->getInt('linit', 5));
 
-        return $this->render('product/list.html.twig', ['products' => $result]);
+        return $this->render('product/list.html.twig', ['products' => $result, 'imageUrlPrefix' => $this->getParameter('product_image')['uri_prefix']]);
     }
 
     /**
@@ -50,7 +46,7 @@ class ProductController extends Controller {
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('AppBundle:Product')->findOneBy(['id' => $id]);
-        return $this->render('product/show.html.twig', ['product' => $product]);
+        return $this->render('product/show.html.twig', ['product' => $product, 'imageUrlPrefix' => $this->getParameter('product_image')['uri_prefix']]);
     }
 
     /**
@@ -64,6 +60,21 @@ class ProductController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
+
+            // $file stores the uploaded file
+            $file = $product->getImage();
+
+            // Generate a unique name for the file before saving it
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            // Move the file to the directory where user avatars are stored
+            $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
+
+            // Update the 'avatar' property to store file name
+            // instead of its contents
+            $product->setImage($fileName);
+
             $product->setUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
@@ -82,16 +93,38 @@ class ProductController extends Controller {
      * @Route("/product/{id}/edit", name="product_edit")
      */
     public function editAction(Request $request, Product $product) {
+        $imageName = $product->getImage();
+        if ($imageName) {
+            $file = null;
+            $product->setImage($file);
+        }
+
         $form = $this->createForm(ProductFormType::class, $product);
 
         // only handles data on POST
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product = $form->getData();
+            $formProduct = $form->getData();
+
+            // $file stores the uploaded file
+            $file = $formProduct->getImage();
+
+            if ($file) {
+                // Generate a unique name for the file before saving it
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+                // Move the file to the directory where user avatars are stored
+                $file->move($this->getParameter('product_image')['upload_destination'], $fileName);
+
+                // Update the 'avatar' property to store file name
+                // instead of its contents
+                $formProduct->setImage($fileName);
+            }
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
+            $em->persist($formProduct);
             $em->flush();
 
             $this->addFlash('success', 'Product updated');
@@ -99,7 +132,7 @@ class ProductController extends Controller {
             return $this->redirectToRoute('product_list');
         }
 
-        return $this->render('product/edit.html.twig', ['productForm' => $form->createView()]);
+        return $this->render('product/edit.html.twig', ['productForm' => $form->createView(), 'imageName' => $imageName, 'imageUrlPrefix' => $this->getParameter('product_image')['uri_prefix']]);
     }
 
     /**

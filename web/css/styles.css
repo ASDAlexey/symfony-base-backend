@@ -310,6 +310,11 @@ h1 {
     vertical-align: top;
 }
 
+.image {
+    max-width: 300px;
+    max-height: 300px;
+}
+
 .product_content {
     font-size: 16px;
 }
@@ -324,4 +329,33 @@ h1 {
 
 .products-table {
     font-size: 16px;
+}
+
+.offset-top-10 {
+    margin-top: 10px;
+}
+
+.image + .wrap-file {
+    opacity: 0;
+}
+
+.image + .wrap-file label {
+    display: none;
+}
+
+.image + .wrap-file input {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.wrapper-image-block {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    z-index: 0;
 }

@@ -25,10 +25,9 @@
                                 <tr class="product-row">
                                     <td class="text-center">
                                         <img
-                                                src="{{ asset('images/iphone7.jpg') }}"
+                                                src="{{ asset(product.image ? ([imageUrlPrefix,product.image]|join) : '/images/no-image.jpg') }}"
                                                 alt="phone"
-                                                width="181"
-                                                height="333"
+                                                class="image"
                                         >
                                     </td>
                                     <td class="text-nowrap text-center">{{ product.name }}</td>

@@ -15,7 +15,16 @@
                 {{ form_row(productForm.description) }}
                 {{ form_row(productForm.color) }}
                 {{ form_row(productForm.year) }}
-                <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                <div><strong>Upload new image</strong></div>
+                <div class="wrapper-image-block">
+                    <img class="image" src="{{ asset(imageName ? ([imageUrlPrefix,imageName]|join) : '/images/no-image.jpg') }}">
+                    <div class="wrap-file">
+                        {{ form_row(productForm.image) }}
+                    </div>
+                </div>
+                <div class="offset-top-10">
+                    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+                </div>
                 {{ form_end(productForm) }}
             </div>
         </div>

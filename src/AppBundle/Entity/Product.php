@@ -42,6 +42,13 @@ class Product {
     private $year;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\Image()
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -136,5 +143,13 @@ class Product {
      */
     public function setUser($user) {
         $this->user = $user;
+    }
+
+    public function getImage() {
+        return $this->image;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
     }
 }

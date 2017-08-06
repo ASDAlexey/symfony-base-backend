@@ -10,10 +10,9 @@
                 <div class="product">
                     <div class="col-xs-4 product__image">
                         <img
-                                src="{{ asset('images/iphone7.jpg') }}"
+                                src="{{ asset(product.image ? ([imageUrlPrefix,product.image]|join) : '/images/no-image.jpg') }}"
                                 alt="phone"
-                                width="181"
-                                height="333"
+                                class="image"
                         >
                     </div>
                     <div class="col-xs-8 product_content">

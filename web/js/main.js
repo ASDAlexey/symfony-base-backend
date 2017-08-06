@@ -14,5 +14,19 @@ $(document).ready(function () {
         `);
       }
     }).fail(err => (console.error(err)));
-  })
+  });
+
+  // file
+  function readFile() {
+    if (this.files && this.files[0]) {
+      const FR = new FileReader();
+
+      FR.addEventListener("load", function (e) {
+        document.querySelector('.wrapper-image-block img').src = e.target.result;
+      });
+      FR.readAsDataURL(this.files[0]);
+    }
+  }
+
+  document.querySelector('.wrap-file input').addEventListener("change", readFile);
 });

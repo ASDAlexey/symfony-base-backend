@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,8 @@ class ProductFormType extends AbstractType {
             ->add('price')
             ->add('description')
             ->add('color')
-            ->add('year');
+            ->add('year')
+            ->add('image', FileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver) {
