@@ -18,6 +18,7 @@
                             <th>Description</th>
                             <th class="text-center">Color</th>
                             <th class="text-center">Year</th>
+                            <th class="text-center">updatedAt</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         {% if(products|length) %}
@@ -35,6 +36,7 @@
                                     <td>{{ product.description }}</td>
                                     <td class="text-center">{{ product.color }}</td>
                                     <td class="text-center">{{ product.year }}</td>
+                                    <td class="text-center">{{ product.updatedAt | date }}</td>
                                     <td class="text-center">
                                         <div>
                                             <a
