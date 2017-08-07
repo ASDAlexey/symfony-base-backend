@@ -10,3 +10,6 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
+    product_image:
+      uri_prefix: /images/products/
+      upload_destination: '%kernel.root_dir%/../web/images/products'
