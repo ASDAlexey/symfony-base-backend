@@ -20,6 +20,7 @@ class Product {
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string"))
      */
     private $name;
