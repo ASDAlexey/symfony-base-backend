@@ -7,11 +7,19 @@ $(document).ready(function () {
     }).done((data) => {
       $(this).parents('.product-row').remove();
       if (!$('.product-row').length) {
-        $('.products-table').append(`
+        if (window.location.href.match(/\?page=/)) {
+          let page = window.location.href.match(/\?page=(\d)/)[1];
+          if (page > 1) {
+            page = page - 1;
+            window.location.href = window.location.href.replace(/\?page=\d/, '?page=' + page);
+          }
+        } else {
+          $('.products-table').append(`
            <tr class="product-row">
               <td colspan="6">Products no found</td>
            </tr>
         `);
+        }
       }
     }).fail(err => (console.error(err)));
   });
