@@ -7,7 +7,6 @@ $(document).ready(function () {
     }).done((data) => {
       $(this).parents('.product-row').remove();
       if (!$('.product-row').length) {
-
         if (window.location.href.match(/\?page=/)) {
           let page = window.location.href.match(/\?page=(\d)/)[1];
           if (page > 1) {
